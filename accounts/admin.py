@@ -2,7 +2,12 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .forms import UserChangeForm, UserCreationForm
 from django.contrib.auth.models import Group
-from .models import User
+from .models import User, Otpcode
+
+
+@admin.register(Otpcode)
+class OtpcodeAdmin(admin.ModelAdmin):
+    list_display = ['phone_number', 'code', 'is_expired']
 
 
 class UserAdmin(BaseUserAdmin):

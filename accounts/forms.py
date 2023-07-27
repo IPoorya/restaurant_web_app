@@ -1,7 +1,28 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
-from .models import User
+from .models import User, Otpcode
+
+
+class loginForm(forms.Form):
+    phone_number = forms.CharField(max_length=11)
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    def clean(self):
+        cd = super().clean()
+        phone_number = cd.get('phone_number')
+        if not phone_number:
+            raise ValidationError('Enter your phone number')
+        password = cd.get('password')
+        if not password:
+            raise ValidationError('Enter your password')
+        user = User.objects.filter(phone_number=phone_number)
+        if not user.exists() or not user[0].check_password(password):
+            raise ValidationError('Phone number or password is wrong')
+
+
+class VerifyCodeForm(forms.Form):
+    code = forms.CharField(max_length=5)
 
 
 class UserCreationForm(forms.ModelForm):
@@ -11,7 +32,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['email', 'name', 'phone_number']
+        fields = ['name', 'email', 'phone_number']
 
     def clean_password2(self):
         cd = self.cleaned_data
@@ -44,6 +65,7 @@ class UserCreationForm(forms.ModelForm):
         phone_check = User.objects.filter(phone_number=phone).exists()
         if phone_check:
             raise ValidationError("Phone number already exists")
+        return phone
 
     def save(self, commit=True):
         user = super().save(commit=False)

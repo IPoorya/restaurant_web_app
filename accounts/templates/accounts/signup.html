@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<style>
+    main{
+        display: flex;
+        justify-content: center;
+        margin-top: 3%;
+    }
+    .form{
+        width: 400px;
+        padding: 20px;
+        border: 1px dashed #000;
+
+    }
+    input{
+        width: 100%;
+    }
+</style>
+<main>
+    <div class="form">
+        <form class="" action="" method="post" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Sign Up">
+        </form>
+    </div>
+</main>
+    
+{% endblock %}

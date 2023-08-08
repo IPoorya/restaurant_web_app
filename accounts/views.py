@@ -8,6 +8,7 @@ from utils import send_otp_code
 from datetime import datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils import timezone
 
 
 class signup(View):
@@ -49,6 +50,13 @@ class verifyCodeView(View):
     form_class = VerifyCodeForm
 
     def dispatch(self, request, *args, **kwargs):
+
+        # deleting expired codes on every request
+        expired_codes = Otpcode.objects.filter(expires_at__lt=timezone.now())
+        if expired_codes.exists():
+            for code in expired_codes:
+                code.delete()
+
         if request.user.is_authenticated:
             return redirect('home:home')
         else:
@@ -63,12 +71,14 @@ class verifyCodeView(View):
     def post(self, request):
         form = self.form_class(request.POST)
         user_session = request.session['user_signup_info']
+
         if form.is_valid():
             db_code = Otpcode.objects.filter(
                 created_at=user_session['created_at'], phone_number=user_session['phone_number'])
             user_code = form.cleaned_data['code']
 
             if db_code and db_code[0].is_expired:
+                db_code[0].delete()
                 messages.error(
                     request, 'your code has been expired', 'danger')
                 return render(request, 'accounts/verify_code.html', {
@@ -76,6 +86,7 @@ class verifyCodeView(View):
                 })
 
             if db_code and db_code[0].code == user_code:
+                db_code[0].delete()
                 messages.success(
                     request, 'you signed up successfully', 'success')
                 user = User.objects.create_user(name=user_session['name'],

@@ -37,6 +37,9 @@ class Otpcode(models.Model):
     created_at = models.DateTimeField()
     expires_at = models.DateTimeField()
 
+    def __str__(self):
+        return self.code
+
     @property
     def is_expired(self):
         return self.expires_at < timezone.now()

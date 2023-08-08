@@ -8,6 +8,7 @@ from .models import User, Otpcode
 @admin.register(Otpcode)
 class OtpcodeAdmin(admin.ModelAdmin):
     list_display = ['phone_number', 'code', 'is_expired']
+    readonly_fields = ["phone_number", "code"]
 
 
 class UserAdmin(BaseUserAdmin):

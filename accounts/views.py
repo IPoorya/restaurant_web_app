@@ -94,6 +94,12 @@ class verifyCodeView(View):
 class loginView(View):
     form_class = loginForm
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('home:home')
+        else:
+            return super().dispatch(request, *args, **kwargs)
+
     def get(self, request):
         form = self.form_class
         return render(request, 'accounts/login.html', {

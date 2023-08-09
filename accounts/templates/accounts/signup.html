@@ -1,17 +1,10 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Sign Up{% endblock %}
-
+{% block header %}
+    <link rel="stylesheet" href="{% static 'accounts/css/base.css' %}">
+{% endblock %}
 {% block content %}
-    <style>
-        .form{
-            border: 1px dashed #000;
-            padding: 20px;
-        }
-        input{
-            width: 100%;
-        }
-    </style>
     <div class="form">
         <form class="" action="" method="post" novalidate>
             {% csrf_token %}

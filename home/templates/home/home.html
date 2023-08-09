@@ -1,3 +1,64 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}Home{% endblock %}
+{% block header %}
+<link rel="stylesheet" href="{% static 'home/css/base.css' %}">
+{% endblock %}
+{% block content %}
+  <div class="food-menu">
+    <div class="item">
+      <img src="" alt="food">
+      <p>name</p>
+      <p>description</p>
+      <button class="btn btn-primary" type="submit">Button</button>
+    </div>
+
+    <div class="item">
+        <img src="" alt="food">
+        <p>name</p>
+        <p>description</p>
+        <button class="btn btn-primary" type="submit">Button</button>
+      </div>
+
+      <div class="item">
+        <img src="" alt="food">
+        <p>name</p>
+        <p>description</p>
+        <button class="btn btn-primary" type="submit">Button</button>
+      </div>
+
+      <div class="item">
+        <img src="" alt="food">
+        <p>name</p>
+        <p>description</p>
+        <button class="btn btn-primary" type="submit">Button</button>
+      </div>
+
+      <div class="item">
+        <img src="" alt="food">
+        <p>name</p>
+        <p>description</p>
+        <button class="btn btn-primary" type="submit">Button</button>
+      </div>
+
+      <div class="item">
+        <img src="" alt="food">
+        <p>name</p>
+        <p>description</p>
+        <button class="btn btn-primary" type="submit">Button</button>
+      </div>
+
+  </div>
+
+  <div class="food-card">
+        <div class="card">
+            <h3>Your Card</h3>
+            <h5>items:</h5>
+            <ul>
+                {% for item in items %}
+                    <li>item.name - item.count: item.price $ | <button type="button" class="btn btn-danger">Delete</button></li>
+                {% endfor %}
+            </ul>
+        </div>
+  </div>
+{% endblock %}

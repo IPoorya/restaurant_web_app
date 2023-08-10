@@ -16,10 +16,10 @@ class FoodAdmin(admin.ModelAdmin):
                     'sells', 'created', 'available']
     readonly_fields = ['sells']
     search_fields = ['name']
+    list_editable = ['available']
 
     def display_category(self, obj):
         url = reverse("admin:home_category_change", args=[obj.category.id])
-        print(url)
         return format_html('<a href="{}">{}</a>', url, obj.category.name)
     display_category.short_description = 'category'
 

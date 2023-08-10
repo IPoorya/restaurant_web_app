@@ -7,7 +7,7 @@ class Category(models.Model):
     foods_number = models.PositiveIntegerField(default=0)
 
     class Meta:
-        ordering = ['name']
+        ordering = ['id']
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
 
@@ -18,12 +18,12 @@ class Category(models.Model):
 class Food(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='food_images/')
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name='foods')
     price = models.PositiveIntegerField()
     available = models.BooleanField(default=False)
-    created = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
     sells = models.PositiveBigIntegerField(default=0)
 
     class Meta:
@@ -31,8 +31,3 @@ class Food(models.Model):
 
     def __str__(self):
         return self.name
-
-    def save(self, *args, **kwargs):
-        self.category.foods_number += 1
-        self.category.save()
-        return super().save(*args, **kwargs)

@@ -3,51 +3,38 @@
 {% block title %}Home{% endblock %}
 {% block header %}
 <link rel="stylesheet" href="{% static 'home/css/base.css' %}">
+<script src="{% static 'home/js/script.js' %}"></script>
 {% endblock %}
 {% block content %}
   <div class="food-menu">
-    <div class="item">
-      <img src="" alt="food">
-      <p>name</p>
-      <p>description</p>
-      <button class="btn btn-primary" type="submit">Button</button>
+    
+    <div class="food-container">
+      <div class="category-container">
+        {% for category in categories %}
+        {% if button == category %}
+          <button type="button" class="btn btn-primary btn-lg categories">{{ category }}</button>
+        {% else %}
+          <button type="button" class="btn btn-secondary btn-lg categories">{{ category }}</button>
+        {% endif %}
+        {% endfor %}
+      </div>
+      
+      <div class="items">
+        {% for food in foods %}
+        <div class="item">
+          <img src={{ food.image.url }} width="100%" alt="{{ food.name }}">
+          <hr>
+          <div>
+            <p>{{ food.name }} | {{ food.price }}T</p>
+            <p class="description">{{ food.description }}</p>
+          </div>
+          <button class="btn btn-primary add-to-card" type="submit">Add to Card</button>
+        </div>
+        {% endfor %}
+      </div>
+      
     </div>
-
-    <div class="item">
-        <img src="" alt="food">
-        <p>name</p>
-        <p>description</p>
-        <button class="btn btn-primary" type="submit">Button</button>
-      </div>
-
-      <div class="item">
-        <img src="" alt="food">
-        <p>name</p>
-        <p>description</p>
-        <button class="btn btn-primary" type="submit">Button</button>
-      </div>
-
-      <div class="item">
-        <img src="" alt="food">
-        <p>name</p>
-        <p>description</p>
-        <button class="btn btn-primary" type="submit">Button</button>
-      </div>
-
-      <div class="item">
-        <img src="" alt="food">
-        <p>name</p>
-        <p>description</p>
-        <button class="btn btn-primary" type="submit">Button</button>
-      </div>
-
-      <div class="item">
-        <img src="" alt="food">
-        <p>name</p>
-        <p>description</p>
-        <button class="btn btn-primary" type="submit">Button</button>
-      </div>
-
+    
   </div>
 
   <div class="food-card">

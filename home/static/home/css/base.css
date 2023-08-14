@@ -22,12 +22,13 @@ main{
 
 .items{
   width: 83%;
-  height: 88%;
+  min-height: 88%;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
-  margin-top: 7px;
+  margin-top: 14px;
+  margin-bottom: 7px;
   /* border: 1px solid #000; */
 }
 
@@ -67,7 +68,8 @@ main{
   margin: 10px 15px;
   background-color: rgb(245, 245, 245);
   padding: 10px;
-  border: 1px solid #c9c9c9;
+  /* border: 1px solid #c9c9c9; */
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -91,4 +93,20 @@ main{
 
 .price{
   font-size: 14px;
+}
+
+.title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  direction: rtl;
+  align-items: center;
+}
+
+#price{
+  font-size: 12px;
+  background-color: rgb(142, 205, 153);
+  padding: 3px 6px;
+  margin-top: 2px;
+  border-radius: 20px;
 }

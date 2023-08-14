@@ -7,7 +7,8 @@ from django. contrib import messages
 class home(View):
     def get(self, request):
         try:
-            categories = Category.objects.values_list('name', flat=True)
+            categories = Category.objects.values_list(
+                'name', flat=True)  # getting all categories
 
             if request.GET.get('category'):
                 category = Category.objects.get(

@@ -25,7 +25,10 @@
           <img src={{ food.image.url }} width="100%" alt="{{ food.name }}">
           <hr>
           <div>
-            <p>{{ food.name }} | {{ food.price }}T</p>
+            <div class="title">
+              <p>{{ food.name }}</p>
+              <p id="price">{{ food.price }}T</p>
+            </div>
             <p class="description">{{ food.description }}</p>
           </div>
           <button class="btn btn-primary add-to-card" type="submit">Add to Card</button>

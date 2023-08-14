@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Food
+from .models import Category, Food, Order
 from django.urls import reverse
 from django.utils.html import format_html
 
@@ -32,3 +32,11 @@ class CategoryAdmin(admin.ModelAdmin):
     inlines = [
         FoodInline,
     ]
+
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ['user', 'order_token', 'price']
+    readonly_fields = ['price', 'order_token', 'user']
+    search_fields = ['order_token']
+    # raw_id_fields = ['items']

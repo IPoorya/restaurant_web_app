@@ -6,39 +6,7 @@
 <script src="{% static 'home/js/script.js' %}"></script>
 {% endblock %}
 {% block content %}
-  <div class="food-menu">
-    
-    <div class="food-container">
-      <div class="category-container">
-        {% for category in categories %}
-        {% if button == category %}
-          <button type="button" class="btn btn-primary btn-lg categories">{{ category }}</button>
-        {% else %}
-          <button type="button" class="btn btn-secondary btn-lg categories">{{ category }}</button>
-        {% endif %}
-        {% endfor %}
-      </div>
-      
-      <div class="items">
-        {% for food in foods %}
-        <div class="item">
-          <img src={{ food.image.url }} width="100%" alt="{{ food.name }}">
-          <hr>
-          <div>
-            <div class="title">
-              <p>{{ food.name }}</p>
-              <p id="price">{{ food.price }}T</p>
-            </div>
-            <p class="description">{{ food.description }}</p>
-          </div>
-          <button class="btn btn-primary add-to-card" type="submit">Add to Card</button>
-        </div>
-        {% endfor %}
-      </div>
-      
-    </div>
-    
-  </div>
+  {% include 'home/inc/food_menu.html' %}
 
   <div class="food-card">
         <div class="card">

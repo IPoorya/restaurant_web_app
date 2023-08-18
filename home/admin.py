@@ -26,8 +26,7 @@ class FoodAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'foods_number']
-    readonly_fields = ['foods_number']
+    list_display = ['name']
     search_fields = ['name']
     inlines = [
         FoodInline,
@@ -37,6 +36,6 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['user', 'order_token', 'price']
-    readonly_fields = ['price', 'order_token', 'user']
+    readonly_fields = ['price', 'order_token']
     search_fields = ['order_token']
     # raw_id_fields = ['items']

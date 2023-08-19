@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.views import View
-from .models import Food, Category
+from .models import Food, Category, Order
 from django. contrib import messages
 
 
@@ -9,7 +9,9 @@ class home(View):
         categories = Category.objects.values_list(
             'name', flat=True)  # getting all categories
 
-        foods = Food.objects.filter(available=True).order_by('sells')
+        foods = Food.objects.filter(available=True).order_by(
+            'sells')  # getting all the available foods
+
         if not foods:
             messages.error(request, 'موردی وجود ندارد', 'danger')
             return render(request, 'home/home.html', {

@@ -35,7 +35,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['user', 'order_token', 'price']
-    readonly_fields = ['price', 'order_token']
-    search_fields = ['order_token']
+    list_display = ['order_token', 'price']
+    readonly_fields = ['name', 'phone_number',
+                       'postal_code', 'price', 'order_token']
+    search_fields = ['order_token', 'name', 'postal_code', 'phone_number']
     # raw_id_fields = ['items']

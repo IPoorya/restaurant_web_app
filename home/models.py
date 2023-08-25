@@ -45,14 +45,18 @@ class Food(models.Model):
 
 class Order(models.Model):
     order_token = models.PositiveIntegerField(null=True, blank=True)
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='order')
-    items = models.ManyToManyField(Food, null=True, blank=True)
+    items = models.ManyToManyField(Food)
     price = models.PositiveIntegerField(default=0)
+
+    name = models.CharField(max_length=100, null=True, blank=True)
+    address = models.TextField(max_length=1023, null=True, blank=True)
+    postal_code = models.CharField(max_length=10, null=True, blank=True)
+    phone_number = models.CharField(max_length=11, null=True, blank=True)
 
     def __str__(self):
         return str(self.order_token)
 
     def save(self, *args, **kwargs):
-        self.order_token = hash_function(str(self.id) + ' : ' + self.user.name)
+        self.order_token = hash_function(
+            str(self.id) + ' : ' + self.postal_code)
         return super().save(*args, **kwargs)

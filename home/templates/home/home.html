@@ -1,24 +1,23 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block title %}Home{% endblock %}
+
 {% block header %}
+
 <link rel="stylesheet" href="{% static 'home/css/base.css' %}">
 <link rel="stylesheet" href="{% static 'home/css/order_style.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/info_form.css' %}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{% static 'home/js/script.js' %}"></script>
 <script src="{% static 'home/js/order_list.js' %}"></script>
+<script src="{% static 'home/js/sending_order.js' %}"></script>
+
 {% endblock %}
+
 {% block content %}
+
   {% include 'home/inc/food_menu.html' %}
+  {% include 'home/inc/food_card.html' %}
 
-  <div class="food-card">
-        <div class="card">
-
-            
-        </div>
-        <div class="order-control">
-          <div id="buy">ثبت سفارش&nbsp;:&nbsp;<span id="totalPrice">0</span>T</div>
-          <div id="clear">حذف</div>
-        </div>
-  </div>
 {% endblock %}

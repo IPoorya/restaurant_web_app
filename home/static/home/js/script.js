@@ -1,9 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
+
+
     let buttons = document.getElementsByClassName("categories")
 
     for (let i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener('click', handleClick);
+      
+      if (buttons[i].innerHTML === "پیتزا"){
+        buttons[i].classList.remove("btn-secondary")
+        buttons[i].classList.add("btn-primary")
       }
+        buttons[i].addEventListener('click', handleClick);
+    }
 
     function handleClick(event) {
       const clickedButton = event.target.textContent;

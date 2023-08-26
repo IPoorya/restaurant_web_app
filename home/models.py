@@ -47,11 +47,11 @@ class Order(models.Model):
     order_token = models.PositiveIntegerField(null=True, blank=True)
     items = models.ManyToManyField(Food)
     price = models.PositiveIntegerField(default=0)
-
+    date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     name = models.CharField(max_length=100, null=True, blank=True)
-    address = models.TextField(max_length=1023, null=True, blank=True)
-    postal_code = models.CharField(max_length=10, null=True, blank=True)
     phone_number = models.CharField(max_length=11, null=True, blank=True)
+    postal_code = models.CharField(max_length=10, null=True, blank=True)
+    address = models.TextField(max_length=1023, null=True, blank=True)
 
     def __str__(self):
         return str(self.order_token)

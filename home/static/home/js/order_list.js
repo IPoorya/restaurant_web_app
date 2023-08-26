@@ -196,16 +196,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
         document.getElementById("clear").onclick = function(){
-            for (let key in order_list) {
-                delete order_list[key];
-              }
-            order_list["total"] = 0
-            document.getElementById("totalPrice").innerText = 0
-
-            while (document.getElementsByClassName("card")[0].firstChild){
-                document.getElementsByClassName("card")[0].removeChild(document.getElementsByClassName("card")[0].firstChild)
+            if (document.getElementById("clear").innerText === "بازگشت"){
+                document.getElementsByClassName("card")[0].classList.toggle("active")
+                document.getElementsByClassName("user_info")[0].classList.toggle("active")
+                document.getElementById("page").innerText = "ثبت سفارش"
+                document.getElementById("clear").innerText = "حذف"
             }
-            save_to_localstorage(order_list)
+            else{
+                for (let key in order_list) {
+                    delete order_list[key];
+                  }
+                order_list["total"] = 0
+                document.getElementById("totalPrice").innerText = 0
+    
+                while (document.getElementsByClassName("card")[0].firstChild){
+                    document.getElementsByClassName("card")[0].removeChild(document.getElementsByClassName("card")[0].firstChild)
+                }
+                save_to_localstorage(order_list)
+            }
+            
         }
     
         if (localStorage.getItem("order_list")) {
@@ -294,43 +303,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
         save_to_localstorage(order_list)
     }
-
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== "") {
-          const cookies = document.cookie.split(";");
-          for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + "=")) {
-              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-              break;
-            }
-          }
-        }
-        return cookieValue;
-      }
-
-
-    document.getElementById("buy").onclick = function(){
-
-        $.ajax({
-            url: "/checking_order/",
-            type: "POST",
-            dataType: "json",
-            data: order_list,
-            headers: {
-              "X-Requested-With": "XMLHttpRequest",
-              "X-CSRFToken": getCookie("csrftoken"),  // don't forget to include the 'getCookie' function
-            },
-            success: (data) => {
-              console.log(data);
-            },
-            error: (error) => {
-              console.log(error);
-            }
-          });
-
-      }
 
 });

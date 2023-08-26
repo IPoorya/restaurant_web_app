@@ -2,11 +2,11 @@ from rest_framework import status
 from rest_framework.views import APIView
 from django.shortcuts import redirect, render
 from django.views import View
-from .models import Food, Category, Order
+from .models import Food, Category
 from django. contrib import messages
 from rest_framework.response import Response
-import json
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import HttpResponseBadRequest
+from .serializers import OrderSerializer
 
 
 class home(View):
@@ -21,12 +21,10 @@ class home(View):
             messages.error(request, 'موردی وجود ندارد', 'danger')
             return render(request, 'home/home.html', {
                 'categories': categories,
-                'button': request.GET.get('category') if request.GET.get('category') else 'پیتزا'
             })
         return render(request, 'home/home.html', {
             'foods': foods,
             'categories': categories,
-            'button': request.GET.get('category') if request.GET.get('category') else 'پیتزا'
         })
 
 
@@ -42,6 +40,38 @@ class HomeAPIView(APIView):
 
     def post(self, request):
         data = request.data
-        print(data)
+        order = {
+            "items": [],
+            "price": 0,
+            "name": '',
+            "phone_number": '',
+            "postal_code": '',
+            "address": ''
+        }
+        seen = []
+        count = []
+        for d in data:
+            food_name = d.split("[")[0]
+            if d == "name":
+                order['name'] = data[d]
+            elif d == "phone_number":
+                order['phone_number'] = data[d]
+            elif d == "postal_code":
+                order['postal_code'] = data[d]
+            elif d == "address":
+                order['address'] = data[d]
+            else:
+                if '[count]' in d:
+                    count.append(data[d])
+                    order['price'] += Food.objects.get(name=food_name).price * \
+                        int(data[d]) * 10
+
+                if d != "total" and d.split('[count]')[0] not in seen and d.split('[price]')[0] not in seen:
+                    order['items'].append(Food.objects.get(name=food_name).id)
+                    seen.append(food_name)
+
+        order = OrderSerializer(data=order)
+        if order.is_valid():
+            order.save()
 
         return Response({'message': 'message recieved!'})

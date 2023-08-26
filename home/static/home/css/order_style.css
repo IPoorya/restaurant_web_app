@@ -10,85 +10,85 @@
     margin: 5px 0;
   }
 
-  #odetail, #obtns, #ocount{
-    height: 100%;
-    /* border: 1px solid #000; */
+#odetail, #obtns, #ocount{
+  height: 100%;
+  /* border: 1px solid #000; */
 
-  }
+}
 
-  #obtns{
-    width: 40%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 0 20px;
-  }
+#obtns{
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 20px;
+}
 
-  #odetail{
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 5px 0 5px 30px;
-  }
+#odetail{
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 5px 0 5px 30px;
+}
 
-  #obtns div{
-    width: 30px;
-    height: 30px;
-    /* border: 1px solid #000; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+#obtns div{
+  width: 30px;
+  height: 30px;
+  /* border: 1px solid #000; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  #obtns .add, #obtns .remove{
-    border-radius: 15px;
-    cursor: pointer;
-  }
+#obtns .add, #obtns .remove{
+  border-radius: 15px;
+  cursor: pointer;
+}
 
-  #obtns .add{
-    background-color: mediumseagreen;
-  }
+#obtns .add{
+  background-color: mediumseagreen;
+}
 
-  #obtns .remove{
-    background-color: crimson;
-  }
+#obtns .remove{
+  background-color: crimson;
+}
 
-  #obtns #ocount{
-    cursor:default;
-  }
+#obtns #ocount{
+  cursor:default;
+}
 
-  .order-control{
-    width: 100%;
-    height: 120px;
-    /* border: 1px solid #cccccc; */
-    padding: 15px 0;
-    display: flex;
-    flex-direction: row;
-  }
+.order-control{
+  width: 100%;
+  height: 120px;
+  /* border: 1px solid #cccccc; */
+  padding: 15px 0;
+  display: flex;
+  flex-direction: row;
+}
 
-  /* .order-control div{
-    border: 1px solid #000;
-  } */
+/* .order-control div{
+  border: 1px solid #000;
+} */
 
-  .order-control #buy, .order-control #clear{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-    cursor: pointer;
-  }
+.order-control #buy, .order-control #clear{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  cursor: pointer;
+}
 
-  .order-control #buy{
-    width: 60%;
-    margin: 0 7px 0 0;
-    background-color: rgb(42, 169, 99);
-  }
+.order-control #buy{
+  width: 60%;
+  margin: 0 7px 0 0;
+  background-color: rgb(42, 169, 99);
+}
 
-  .order-control #clear{
-    width: 40%;
-    margin: 0 0 0 7px;
-    background-color: #cccccc;
-  }
+.order-control #clear{
+  width: 40%;
+  margin: 0 0 0 7px;
+  background-color: #cccccc;
+}
 

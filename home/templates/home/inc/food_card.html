@@ -1,10 +1,23 @@
 <div class="food-card">
-    <div class="card">
 
-        
+    <div class="card active"></div>
+
+    <div class="user_info">
+      <form action="">
+        <label for="name">نام:</label>
+        <input type="text" id="name" name="name">
+        <label for="phone_number">شماره تماس:</label>
+        <input type="text" id="phone_number" name="phone_number">
+        <label for="postal_code">کد پستی:</label>
+        <input type="text" id="postal_code" name="postal_code">
+        <label for="address">آدرس:</label>
+        <textarea name="address" id="address" rows="5"></textarea>
+      </form>
     </div>
+
     <div class="order-control">
-      <div id="buy">ثبت سفارش&nbsp;:&nbsp;<span id="totalPrice">0</span>T</div>
+      <div id="buy"><span id="page">ثبت سفارش</span>&nbsp;:&nbsp;<span id="totalPrice">0</span>T</div>
       <div id="clear">حذف</div>
     </div>
+    
 </div>

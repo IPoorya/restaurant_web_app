@@ -74,4 +74,5 @@ class HomeAPIView(APIView):
         if order.is_valid():
             order.save()
 
-        return Response({'message': 'message recieved!'})
+        return Response({'message': 'message recieved!',
+                         'status': 'success'})

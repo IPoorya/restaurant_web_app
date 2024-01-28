@@ -52,7 +52,19 @@ document.addEventListener("DOMContentLoaded", function() {
                 "X-CSRFToken": getCookie("csrftoken"),  // don't forget to include the 'getCookie' function
                 },
                 success: (data) => {
-                console.log(data);
+                  console.log(data);
+                
+                  let form = document.getElementById("order_form");
+                  for (let i = 0; i < form.children.length; i++) {
+                    form.children[i].value = '';
+                  }
+                
+                  let body = document.getElementsByTagName("body")[0];
+                  let message = document.createElement('p');
+                  // message.classList.add('alert', 'alert-{{ message.tags }}', 'message');
+                  message.textContent = 'سفارش با موفقیت ثبت شد';
+                
+                  body.insertBefore(document.getElementsByTagName('main')[0], message);
                 },
                 error: (error) => {
                 console.log(error);

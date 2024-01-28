@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Hide objects that don't match the selected category
         for (let i = 0; i < items.length; i++) {
             const item = items[i];
-            if (item.classList.contains(category)) {
+            if (item.className.includes(category)) {
                 item.style.display = 'block';
             } else {
                 item.style.display = 'none';

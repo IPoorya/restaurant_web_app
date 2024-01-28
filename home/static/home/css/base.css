@@ -21,7 +21,7 @@ main{
   }
 
 .items{
-  width: 83%;
+  width: 85%;
   min-height: 88%;
   display: flex;
   justify-content: flex-start;

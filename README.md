@@ -2,7 +2,9 @@
 
 this project demonstrated how to handle user orders using Django as the back-end.
 
-front-end is developed by Django templates. UI/UX was not the purpose of this project so it's not responsive and something exceptional. user authentication is just there and has nothing to do with submitting orders. OTP functionality is implemented but it's not connected to any SMS service. you can read the OTP code from the admin panel.
+front-end is developed by Django templates. UI/UX was not the purpose of this project so it's not responsive and something exceptional. 
+
+user authentication is just there and has nothing to do with submitting orders. OTP functionality is implemented but it's not connected to any SMS service. you can read the OTP code from the admin panel.
 
 ## Setup
 
